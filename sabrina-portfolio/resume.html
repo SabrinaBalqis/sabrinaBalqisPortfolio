@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nur Sabrina Balqis — Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink:    #1A1208;
+      --cream:  #F6F1EA;
+      --warm:   #F0E8DC;
+      --accent: #B8694A;
+      --muted:  #9A8C80;
+      --border: 1px solid rgba(26,18,8,0.13);
+      --font-serif: 'DM Serif Display', Georgia, serif;
+      --font-sans:  'DM Sans', system-ui, sans-serif;
+      --font-mono:  'Space Mono', 'Courier New', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-sans);
+      background: #eee;
+      color: var(--ink);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* ---- Print button (hidden on print) ---- */
+    .print-btn {
+      display: block;
+      margin: 20px auto;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 10px 28px;
+      background: var(--ink);
+      color: var(--cream);
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .print-btn:hover { background: var(--accent); }
+    @media print { .print-btn { display: none; } body { background: #fff; } }
+
+    /* ---- A4 Page ---- */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      background: #fff;
+      margin: 0 auto 40px;
+      padding: 13mm 15mm 13mm 15mm;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    @media print {
+      .page { margin: 0; padding: 12mm 14mm; box-shadow: none; }
+    }
+
+    /* ===== HEADER ===== */
+    .r-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-bottom: 11px;
+      border-bottom: 2px solid var(--ink);
+      margin-bottom: 12px;
+      gap: 16px;
+    }
+    .r-name {
+      font-family: var(--font-serif);
+      font-size: 26pt;
+      font-weight: 400;
+      line-height: 1.0;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .r-name em { font-style: italic; color: var(--accent); }
+    .r-role {
+      font-family: var(--font-mono);
+      font-size: 8pt;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .r-contact {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 3px;
+    }
+    .r-contact a, .r-contact span {
+      font-family: var(--font-mono);
+      font-size: 7.5pt;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    /* ===== PORTFOLIO BADGE ===== */
+    .r-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--warm);
+      border: var(--border);
+      padding: 8px 12px;
+      margin-bottom: 13px;
+    }
+    .r-qr {
+      width: 54px;
+      height: 54px;
+      flex-shrink: 0;
+      background: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    /* QR pattern placeholder — replace with your real QR image */
+    .r-qr::before {
+      content: '';
+      position: absolute;
+      inset: 5px;
+      background: repeating-conic-gradient(var(--cream) 0% 25%, var(--ink) 0% 50%) 0 0 / 7px 7px;
+    }
+    .r-qr img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: relative;
+      z-index: 1;
+    }
+    .r-badge-info {}
+    .r-badge-label {
+      font-family: var(--font-mono);
+      font-size: 7pt;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+    .r-badge-url {
+      font-family: var(--font-mono);
+      font-size: 9pt;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .r-badge-desc {
+      font-size: 8pt;
+      color: var(--muted);
+      margin-top: 1px;
+      font-weight: 300;
+    }
+
+    /* ===== SECTION ===== */
+    .r-sec { margin-bottom: 11px; }
+    .r-sec-title {
+      font-family: var(--font-mono);
+      font-size: 7pt;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+      padding-bottom: 4px;
+      border-bottom: var(--border);
+    }
+
+    /* ===== SUMMARY ===== */
+    .r-summary {
+      font-size: 9.5pt;
+      line-height: 1.65;
+      color: var(--ink);
+      font-weight: 300;
+    }
+
+    /* ===== TWO COLUMN ===== */
+    .r-two { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 11px; }
+
+    /* ===== SKILLS ===== */
+    .r-skill-group { margin-bottom: 7px; }
+    .r-skill-label {
+      font-family: var(--font-mono);
+      font-size: 7pt;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+    .r-skill-items {
+      font-size: 9.5pt;
+      color: var(--ink);
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    /* ===== EXPERIENCE ===== */
+    .r-exp { margin-bottom: 9px; padding-bottom: 9px; border-bottom: var(--border); }
+    .r-exp:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .r-exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 2px;
+    }
+    .r-exp-title {
+      font-family: var(--font-serif);
+      font-size: 11pt;
+      font-weight: 400;
+      color: var(--ink);
+    }
+    .r-exp-date {
+      font-family: var(--font-mono);
+      font-size: 7.5pt;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .r-exp-company {
+      font-family: var(--font-mono);
+      font-size: 8pt;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+    .r-exp-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 7pt;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 1px 6px;
+      margin-bottom: 3px;
+    }
+    .r-exp-desc {
+      font-size: 9pt;
+      color: var(--muted);
+      line-height: 1.55;
+      font-weight: 300;
+    }
+    .r-exp-desc li {
+      margin-left: 14px;
+      margin-bottom: 1px;
+    }
+
+    /* ===== PROJECTS ===== */
+    .r-proj { margin-bottom: 9px; padding-bottom: 9px; border-bottom: var(--border); }
+    .r-proj:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .r-proj-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 2px;
+    }
+    .r-proj-name {
+      font-family: var(--font-serif);
+      font-size: 11pt;
+      font-weight: 400;
+      color: var(--ink);
+    }
+    .r-proj-stack {
+      font-family: var(--font-mono);
+      font-size: 7.5pt;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .r-proj-desc {
+      font-size: 9pt;
+      color: var(--muted);
+      line-height: 1.55;
+      font-weight: 300;
+    }
+
+    /* ===== EDUCATION ===== */
+    .r-edu { margin-bottom: 8px; }
+    .r-edu:last-child { margin-bottom: 0; }
+    .r-edu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .r-edu-degree {
+      font-size: 9.5pt;
+      font-weight: 500;
+      color: var(--ink);
+    }
+    .r-edu-date {
+      font-family: var(--font-mono);
+      font-size: 7.5pt;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .r-edu-school {
+      font-size: 9pt;
+      color: var(--muted);
+      margin-top: 1px;
+    }
+    .r-edu-detail {
+      font-size: 8.5pt;
+      color: var(--accent);
+      font-family: var(--font-mono);
+      margin-top: 2px;
+    }
+
+    /* ===== ACHIEVEMENTS ===== */
+    .r-ach-item {
+      font-size: 9pt;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.55;
+      padding-left: 12px;
+      position: relative;
+      margin-bottom: 3px;
+    }
+    .r-ach-item::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+  </style>
+</head>
+<body>
+
+  <button class="print-btn" onclick="window.print()">Save as PDF — Ctrl+P / Cmd+P</button>
+
+  <div class="page">
+
+    <!-- HEADER -->
+    <header class="r-header">
+      <div>
+        <h1 class="r-name">Nur Sabrina <em>Balqis</em></h1>
+        <p class="r-role">Web &amp; Frontend Developer</p>
+      </div>
+      <div class="r-contact">
+        <a href="tel:+60166137432">+6016-6137432</a>
+        <a href="mailto:sssabrinabalqis@gmail.com">sssabrinabalqis@gmail.com</a>
+        <a href="https://linkedin.com/in/sabrina-balqis">linkedin.com/in/sabrina-balqis</a>
+        <span>Petaling Jaya, Malaysia</span>
+      </div>
+    </header>
+
+    <!-- PORTFOLIO BADGE -->
+    <div class="r-badge">
+      <div class="r-qr">
+        <!--
+          ☝️ HOW TO ADD YOUR QR CODE:
+          1. Push your portfolio to GitHub Pages
+          2. Go to qr-code-generator.com
+          3. Enter your URL (e.g. https://sabrinabalqis.github.io)
+          4. Download PNG → save as assets/qr.png
+          5. Replace the <div class="r-qr"> above with:
+             <div class="r-qr"><img src="assets/qr.png" alt="Portfolio QR" /></div>
+        -->
+      </div>
+      <div class="r-badge-info">
+        <p class="r-badge-label">View full portfolio</p>
+        <p class="r-badge-url">sabrinabalqis.github.io</p>
+        <p class="r-badge-desc">Live projects · source code · UI/UX work · contact</p>
+      </div>
+    </div>
+
+    <!-- SUMMARY -->
+    <div class="r-sec">
+      <p class="r-sec-title">Profile</p>
+      <p class="r-summary">
+        Passionate Web / Frontend Developer with a UI/UX focus — I turn designs into live, responsive, and
+        interactive websites. Redesigned a live company website (Apex Academy) using PHP, TailwindCSS, HTML,
+        and JavaScript. Experienced in real-time web interactivity, design-to-code workflows (Figma), and
+        cross-team collaboration. Seeking a Junior Web / Frontend Developer role to build beautiful, functional
+        web applications that users love.
+      </p>
+    </div>
+
+    <!-- SKILLS + EDUCATION side by side -->
+    <div class="r-two">
+      <div>
+        <div class="r-sec">
+          <p class="r-sec-title">Technical Skills</p>
+          <div class="r-skill-group">
+            <p class="r-skill-label">Frontend</p>
+            <p class="r-skill-items">HTML · CSS · JavaScript · TailwindCSS · PHP · JSP/Servlet</p>
+          </div>
+          <div class="r-skill-group">
+            <p class="r-skill-label">Backend &amp; Databases</p>
+            <p class="r-skill-items">SQL · MySQL · Java</p>
+          </div>
+          <div class="r-skill-group">
+            <p class="r-skill-label">Tools &amp; Workflow</p>
+            <p class="r-skill-items">Git · GitHub · JIRA · Selenium · Apache NetBeans</p>
+          </div>
+          <div class="r-skill-group">
+            <p class="r-skill-label">Design</p>
+            <p class="r-skill-items">Figma · Canva</p>
+          </div>
+          <div class="r-skill-group">
+            <p class="r-skill-label">Other</p>
+            <p class="r-skill-items">Python · IoT · CMS Frameworks</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="r-sec">
+          <p class="r-sec-title">Education</p>
+          <div class="r-edu">
+            <div class="r-edu-header">
+              <span class="r-edu-degree">Bachelor of Computer Science (Software Engineering) with Honours</span>
+              <span class="r-edu-date">Oct 2022 – Jan 2026</span>
+            </div>
+            <p class="r-edu-school">Universiti Malaysia Terengganu</p>
+            <p class="r-edu-detail">CGPA 3.48 / 4.00 · Dean's List: Sem 3, 6 &amp; 7</p>
+          </div>
+          <div class="r-edu">
+            <div class="r-edu-header">
+              <span class="r-edu-degree">Physical Science Course</span>
+              <span class="r-edu-date">2021 – 2022</span>
+            </div>
+            <p class="r-edu-school">Kolej Matrikulasi Perak</p>
+            <p class="r-edu-detail">CGPA 3.75 / 4.00</p>
+          </div>
+        </div>
+        <div class="r-sec">
+          <p class="r-sec-title">Achievements &amp; Activities</p>
+          <p class="r-ach-item">PETRONAS BeDigital BootCamp — Miniseries (2025)</p>
+          <p class="r-ach-item">K-Youth Development Programme, Khazanah Nasional (2025)</p>
+          <p class="r-ach-item">International Exchange — UNIKOM SCHOLAR, Bandung, Indonesia (2023)</p>
+          <p class="r-ach-item">Best Participant — Scientific Paper Writing, UNIKOM SCHOLAR (2023)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div class="r-sec">
+      <p class="r-sec-title">Work Experience</p>
+
+      <div class="r-exp">
+        <div class="r-exp-header">
+          <span class="r-exp-title">IT Business Analyst</span>
+          <span class="r-exp-date">Feb 2026 – Present</span>
+        </div>
+        <p class="r-exp-company">Apex Equity Holdings Berhad · Petaling Jaya</p>
+        <ul class="r-exp-desc">
+          <li>Track IT project risks, cybersecurity compliance, and KRI reporting to management.</li>
+          <li>Coordinate Vulnerability Assessment &amp; Penetration Testing (VAPT) — handling, analysis, and remediation tracking.</li>
+          <li>Respond to Bursa Malaysia &amp; Securities Commission (SC) inquiries on IT security, risk, and compliance.</li>
+        </ul>
+      </div>
+
+      <div class="r-exp">
+        <div class="r-exp-header">
+          <span class="r-exp-title">IT Intern → Frontend / UI/UX Developer</span>
+          <span class="r-exp-date">Aug 2025 – Jan 2026</span>
+        </div>
+        <p class="r-exp-company">Apex Equity Holdings Berhad · Petaling Jaya</p>
+        <span class="r-exp-badge">Converted to Full-Time</span>
+        <ul class="r-exp-desc">
+          <li>Frontend/UIUX Developer for Apex Academy: redesigned UI using PHP, TailwindCSS, HTML, JavaScript — improved layout consistency, readability, and user navigation.</li>
+          <li>Coordinated SFTP &amp; PGP Keys (UAT) with vendor for CFD white-label implementation.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="r-sec">
+      <p class="r-sec-title">Selected Projects</p>
+
+      <div class="r-proj">
+        <div class="r-proj-header">
+          <span class="r-proj-name">FloralPetals — Custom Bouquet Ordering System</span>
+          <span class="r-proj-stack">Java · HTML · CSS · JS · MySQL · JSP · Servlet</span>
+        </div>
+        <p class="r-proj-desc">E-commerce platform for personalised flower bouquet design with real-time preview, order summary, and checkout. Built full-stack from UI to database.</p>
+      </div>
+
+      <div class="r-proj">
+        <div class="r-proj-header">
+          <span class="r-proj-name">Apex Academy — Live Website Redesign</span>
+          <span class="r-proj-stack">PHP · TailwindCSS · HTML · JavaScript</span>
+        </div>
+        <p class="r-proj-desc">Redesigned UI for a live production website at Apex Equity Holdings — improved layout consistency, readability, and user navigation for company learning platform.</p>
+      </div>
+
+      <div class="r-proj">
+        <div class="r-proj-header">
+          <span class="r-proj-name">IoT Garbage Monitoring System</span>
+          <span class="r-proj-stack">Python · IoT Sensors</span>
+        </div>
+        <p class="r-proj-desc">Smart waste system using IoT sensors to monitor bin fill levels in real-time and auto-notify collection teams, reducing overflow and improving efficiency.</p>
+      </div>
+
+      <div class="r-proj">
+        <div class="r-proj-header">
+          <span class="r-proj-name">GlamourPalette — Fashion Outfit Website</span>
+          <span class="r-proj-stack">Java · HTML · CSS · JavaScript</span>
+        </div>
+        <p class="r-proj-desc">Fashion discovery site for outfit ideas with interactive mix-and-match clothing features for everyday and seasonal looks.</p>
+      </div>
+
+    </div>
+
+  </div><!-- /page -->
+
+</body>
+</html>
