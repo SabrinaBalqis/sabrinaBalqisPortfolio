@@ -8,9 +8,9 @@ if (yearEl) yearEl.textContent = '© ' + new Date().getFullYear();
 
 /* ---- Typewriter ---- */
 const phrases = [
-  'Nur Sabrina Balqis',
   'frontend developer',
   'ui/ux focused',
+  'Sabrina Balqis',
   'design-to-code',
 ];
 let phraseIdx = 0, charIdx = 0, deleting = false;
